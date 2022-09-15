@@ -8,7 +8,6 @@ function App() {
     useEffect(() => {
         getTest()
             .then((res) => {
-                console.log("Got res: ", res);
                 setData(res.message);
             })
             .catch((err) => console.log(err));

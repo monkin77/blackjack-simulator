@@ -5,6 +5,8 @@ import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 import testRoutes from "./routes/test.js";
+import authRoutes from "./routes/auth.js";
+import apiRoutes from "./routes/index.js";
 
 dotenv.config();
 
@@ -21,11 +23,11 @@ mongoose
     .catch((err) => console.log("DB CONNECTION ERROR", err));
 
 // middleware
-app.use(morgan("dev"));
+app.use(morgan("dev")); // Used to beautify output of requests to the backend
 app.use(cors({ origin: true, credentials: true }));
 
 // routes
-testRoutes(app);
+app.use("/api", apiRoutes());
 
 // port
 const port = process.env.PORT || 8081;

@@ -3,13 +3,8 @@ import { getTest } from "../controllers/test.js";
 
 const router = Router();
 
-// import middleware
+export default (mainRouter) => {
+    mainRouter.use("/test", router);
 
-// api routes
-
-export default (app) => {
-    app.use("/", router);
-
-    // Test route
-    router.get("/test", getTest);
+    router.get("/", getTest);
 };
