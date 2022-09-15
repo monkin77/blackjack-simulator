@@ -22,15 +22,20 @@ mongoose
     .then(() => console.log("DB CONNECTED!"))
     .catch((err) => console.log("DB CONNECTION ERROR", err));
 
+
 // middleware
 app.use(morgan("dev")); // Used to beautify output of requests to the backend
 app.use(cors({ origin: true, credentials: true }));
+app.use(express.json()); // middleware to parse json (body parser)
+
 
 // routes
 app.use("/api", apiRoutes());
 
+
 // port
 const port = process.env.PORT || 8081;
+
 
 // listener
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
