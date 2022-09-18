@@ -1,6 +1,10 @@
-export const getTest = async() => {
+interface Result {
+    message : string,
+}
+
+export const getTest = async () : Promise<Result | undefined> => {
     try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/test`, {
+        const res : Response = await fetch(`${process.env.REACT_APP_API_URL}/test`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -11,5 +15,6 @@ export const getTest = async() => {
         return await res.json();
     } catch (err) {
         console.log("Error in getTest service: ", err);
+        return;
     }
 };

@@ -4,14 +4,13 @@ import { useState, useEffect } from "react";
 import { getTest } from "./services/test";
 
 function App() {
-    const [data, setData] = useState("Hello World!");
+    const [data, setData] = useState<string>("Hello World!");
 
     useEffect(() => {
-        getTest()
-            .then((res) => {
-                setData(res.message);
-            })
-            .catch((err) => console.log(err));
+        // Since the getTest method already has a try/catch block inside, there's no point in catching an error here
+        getTest().then((res) => {
+            if (res?.message) setData(res.message);
+        });
     }, []);
 
     return (
